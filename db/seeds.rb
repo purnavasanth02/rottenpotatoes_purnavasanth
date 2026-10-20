@@ -8,9 +8,17 @@ more_movies = [
   {:title => 'Nomadland', :rating => 'R',
     :release_date => '19-Feb-2021'},
   {:title => 'CODA', :rating => 'PG-13',
-    :release_date => '13-Aug-2021'}
+    :release_date => '13-Aug-2021'},
+  {:title => 'The Avengers', :rating => '8',
+    :release_date => '11-Apr-2012'},
+  {:title => 'Avengers: Infinity War', :rating => '9',
+    :release_date => '23-Apr-2018'},
+  {:title => 'Avengers: Age of Ultron', :rating => '7',
+    :release_date => '13-Apr-2015'},
+  {:title => 'Avengers: End Game', :rating => '10',
+    :release_date => '26-Apr-2019'}
 ]
 
 more_movies.each do |movie|
-  Movie.create!(movie)
+  Movie.find_or_create_by!(title: movie[:title]) { |m| m.assign_attributes(movie) }
 end
